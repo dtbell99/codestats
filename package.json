@@ -1,0 +1,20 @@
+{
+  "name": "codestats.js",
+  "version": "1.0.0",
+  "description": "An app which allows you access to some code status of your project.",
+  "main": "runner.js",
+  "scripts": {
+    "start": "node runner.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dtbell99/codestats.git"
+  },
+  "author": "David Bell dtbell99",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dtbell99/codestats/issues"
+  },
+  "homepage": "https://github.com/dtbell99/codestats#readme"
+}
