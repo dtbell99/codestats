@@ -5,7 +5,7 @@ var dta = {
     "files": []
 }
 
-var blockedFiles = ["node_modules", ".git", "build", "bin"]
+var blockedFiles = ["node_modules", ".git", "build", "bin", ".gradle"]
 
 const walkDirectory = (directory) => {
     console.log("Processing: " + directory)
