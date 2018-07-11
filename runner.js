@@ -5,7 +5,7 @@ var dta = {
     "files": []
 }
 
-var blockedFiles = ["node_modules", ".git", "build", "bin", ".gradle"]
+var blockedFiles = ["node_modules", ".git", "build", "bin", ".gradle", ".settings", ".vscode"]
 
 const walkDirectory = (directory) => {
     console.log("Processing: " + directory)
@@ -17,34 +17,36 @@ const walkDirectory = (directory) => {
             walkDirectory(directory + "/" + file);
         } else {
             var fileData = file.split(".")
-            if (fileData.length > 1 && fileData[0] !== "") {
-                var extension = fileData[fileData.length - 1]
+            // if (fileData.length > 1 && fileData[0] !== "") {
 
-                var lines = fs.readFileSync(directory + "/" + file, 'utf-8')
-                    .split('\n')
-                    .filter(Boolean);
-                if (extension == ".js") {
-                    lines.forEach((lne) => {
-                        console.log("line:" + lne)
-                    })
-                }
-                var extFound = false
-                dta.files.forEach((f) => {
-                    if (f.extension === extension) {
-                        f.files++
-                        f.lines += lines.length
-                        extFound = true
-                    }
+            // }
+            var extension = fileData[fileData.length - 1]
+
+            var lines = fs.readFileSync(directory + "/" + file, 'utf-8')
+                .split('\n')
+                .filter(Boolean);
+            if (extension == ".js") {
+                lines.forEach((lne) => {
+                    console.log("line:" + lne)
                 })
-                if (!extFound) {
-                    var f = {
-                        "extension": extension,
-                        "files": 1,
-                        "lines": lines.length
-                    }
-                    dta.files.push(f)
-                }
             }
+            var extFound = false
+            dta.files.forEach((f) => {
+                if (f.extension === extension) {
+                    f.files++
+                    f.lines += lines.length
+                    extFound = true
+                }
+            })
+            if (!extFound) {
+                var f = {
+                    "extension": extension,
+                    "files": 1,
+                    "lines": lines.length
+                }
+                dta.files.push(f)
+            }
+
         }
     })
 }
